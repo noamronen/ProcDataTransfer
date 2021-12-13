@@ -34,11 +34,19 @@ private:
 public:
     Procfs_Miner();
     Procfs_Miner(vector<proc_type> procfs_options);
+
     void setProcfs_options( vector<proc_type> procfs_options);
     vector<proc_type> getProcfs_options();
+
     //void addProcType(proc_type newOption);
+
     void Mine_proc_stat_cpuDataPrint();
     string  Mine_proc_stat_cpuDataStr();
-    void Mine_proc_memoryInfo();
-    void Mine_proc_KernelModule();
+
+    void Mine_proc_memoryInfoPrint();
+    string Mine_proc_memoryInfoStr();
+
+    void Mine_proc_KernelModulePrint();
+    string Mine_proc_KernelModuleStr();
+
 };
