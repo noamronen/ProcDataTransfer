@@ -64,10 +64,31 @@ void Server::recieve(int client_socket)
                 int size = output.length();
                 char SendBuffer[size];
                 strcpy(SendBuffer,output.c_str());
-                strcat(SendBuffer,"\0");
+                strcat(SendBuffer,"\n \0");
                 send(client_socket,SendBuffer, strlen(SendBuffer+1),0);//sending the message
                 cout<<"message sent: "<<SendBuffer<<endl;
             }
+            if(strcmp(RecvBuffer,"memory_data\0")==0)
+            {
+                string output = miner.Mine_proc_memoryInfoStr();
+                int size = output.length();
+                char SendBuffer[size];
+                strcpy(SendBuffer,output.c_str());
+                strcat(SendBuffer,"\n \0");
+                send(client_socket,SendBuffer, strlen(SendBuffer+1),0);//sending the message
+                cout<<"message sent: "<<SendBuffer<<endl;
+            }
+            if(strcmp(RecvBuffer,"kernelModule_data\0")==0)
+            {
+                string output = miner.Mine_proc_KernelModuleStr();
+                int size = output.length();
+                char SendBuffer[size];
+                strcpy(SendBuffer,output.c_str());
+                strcat(SendBuffer,"\n \0");
+                send(client_socket,SendBuffer, strlen(SendBuffer+1),0);//sending the message
+                cout<<"message sent: "<<SendBuffer<<endl;
+            }
+
 
 
         }
