@@ -193,7 +193,7 @@ string Procfs_Miner::Mine_proc_stat_cpuDataStr()//returning the output as a stri
     }
     return returnBuffer;
 }
-void Procfs_Miner::Mine_proc_memoryInfo()
+void Procfs_Miner::Mine_proc_memoryInfoPrint()
 {
     //prints line by line the memory data received from /proc/meminfo file
     std::ifstream filestat("/proc/meminfo");
@@ -203,7 +203,19 @@ void Procfs_Miner::Mine_proc_memoryInfo()
         cout<<line<<endl;
     }
 }
-void Procfs_Miner::Mine_proc_KernelModule()
+string Procfs_Miner::Mine_proc_memoryInfoStr()
+{
+    string returnBuffer="";
+    //appends line by line the memory data received from /proc/meminfo file
+    std::ifstream filestat("/proc/meminfo");
+    std::string line;
+    while(std::getline(filestat,line))
+    {
+        returnBuffer.append(line+"\n");
+    }
+    return returnBuffer;
+}
+void Procfs_Miner::Mine_proc_KernelModulePrint()
 {
     //prints line by line the kernel modules data received from /proc/kcore file
     std::ifstream filestat("/proc/modules");
@@ -212,6 +224,18 @@ void Procfs_Miner::Mine_proc_KernelModule()
     {
         cout<<line<<endl;
     }
+}
+string Procfs_Miner::Mine_proc_KernelModuleStr()
+{
+    string returnBuffer="";
+    //appends line by line the kernel modules data received from /proc/kcore file
+    std::ifstream filestat("/proc/modules");
+    std::string line;
+    while(std::getline(filestat,line))
+    {
+        returnBuffer.append(line+"\n");
+    }
+    return returnBuffer;
 }
 /*
 void Procfs_Miner::addProcType(proc_type newOption)
