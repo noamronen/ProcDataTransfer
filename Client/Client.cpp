@@ -44,8 +44,12 @@ void Client::Send()
     int option=-1;
     while(true)
     {
-        cout<<"to exit press 0"<<endl;
-        cout<<"for cpu data press 1"<<endl;
+        cout<<"-------------------------"<<endl;
+        cout<<"To exit press 0"<<endl;
+        cout<<"For cpu data press 1"<<endl;
+        cout<<"For memory data press 2"<<endl;
+        cout<<"For kernel module data press 3"<<endl;
+        cout<<"-------------------------"<<endl;
         //rest of options
         cin>>option;
         switch (option)
@@ -60,7 +64,18 @@ void Client::Send()
                 char SendBuffer[1024] = "cpu_data\0";
                 send(client_socket, SendBuffer, strlen(SendBuffer) + 1, 0);
                 break;
-
+            }
+            case 2:
+            {
+                char SendBuffer[1024] = "memory_data\0";
+                send(client_socket, SendBuffer, strlen(SendBuffer) + 1, 0);
+                break;
+            }
+            case 3:
+            {
+                char SendBuffer[1024] = "kernelModule_data\0";
+                send(client_socket, SendBuffer, strlen(SendBuffer) + 1, 0);
+                break;
             }
         }
     }
