@@ -237,6 +237,38 @@ string Procfs_Miner::Mine_proc_KernelModuleStr()
     }
     return returnBuffer;
 }
+
+void Procfs_Miner::Mine_Kernel_MessagesPrint()
+{
+    std::ifstream filestat("/var/log/syslog");
+    std::string line;
+    while(std::getline(filestat,line))
+    {
+        cout<<line<<endl;
+    }
+}
+
+string Procfs_Miner::Mine_Kernel_MessagesStr()
+{
+    string returnBuffer="";
+    std::ifstream filestat("/var/log/syslog");
+    std::string line;
+    while(std::getline(filestat,line))
+    {
+       returnBuffer.append(line+"\n");
+    }
+    return returnBuffer;
+}
+
+void Procfs_Miner::Mine_open_portsPrint()
+{
+    std::ifstream filestat("/proc/net/tcp");
+    std::string line;
+    while(std::getline(filestat,line))
+    {
+        cout<<line<<endl;
+    }
+}
 /*
 void Procfs_Miner::addProcType(proc_type newOption)
 {
@@ -254,5 +286,6 @@ void Procfs_Miner::addProcType(proc_type newOption)
         procfs_options.push_back(newOption);
 }
  */
+
 
 
