@@ -88,6 +88,17 @@ void Server::recieve(int client_socket)
                 send(client_socket,SendBuffer, strlen(SendBuffer+1),0);//sending the message
                 cout<<"message sent: "<<SendBuffer<<endl;
             }
+            if(strcmp(RecvBuffer,"kernel_messages\0")==0)
+            {
+                string output = miner.Mine_Kernel_MessagesStr();
+                int size = output.length();
+                char SendBuffer[size];
+                strcpy(SendBuffer,output.c_str());
+                strcat(SendBuffer,"\n \0");
+                send(client_socket,SendBuffer, strlen(SendBuffer+1),0);//sending the message
+                cout<<"message sent: "<<SendBuffer<<endl;
+            }
+
 
 
 
