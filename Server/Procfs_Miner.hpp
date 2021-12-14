@@ -49,4 +49,11 @@ public:
     void Mine_proc_KernelModulePrint();
     string Mine_proc_KernelModuleStr();
 
+    void Mine_cpu_temperature();
+
+    void Mine_Kernel_MessagesPrint();
+    string Mine_Kernel_MessagesStr();
+
+    void Mine_open_portsPrint();
+
 };
